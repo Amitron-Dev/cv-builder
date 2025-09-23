@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { color: #333; }
+    section { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <h1><%= data.nom %></h1>
+  <p>Email : <%= data.email %></p>
+
+  <section>
+    <h2>Compétences</h2>
+    <p><%= data.competences %></p>
+  </section>
+
+  <section>
+    <h2>Expérience</h2>
+    <p><%= data.experience %></p>
+  </section>
+</body>
+</html>

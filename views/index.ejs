@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Générateur de CV</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Générateur de CV</h1>
+  <form action="/generate" method="POST">
+    <label>Nom:</label>
+    <input type="text" name="nom" required>
+    <label>Email:</label>
+    <input type="email" name="email" required>
+    <label>Compétences:</label>
+    <textarea name="competences" required></textarea>
+    <label>Expérience:</label>
+    <textarea name="experience" required></textarea>
+    <button type="submit">Générer le CV</button>
+  </form>
+</body>
+</html>
