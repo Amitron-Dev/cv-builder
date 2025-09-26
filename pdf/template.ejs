@@ -1,25 +1,227 @@
+<%# Fichier: pdf/template.ejs - Style 2 Colonnes Professionnel %>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h1 { color: #333; }
-    section { margin-bottom: 20px; }
-  </style>
+    <meta charset="UTF-8">
+    <title>CV de <%= data.nom %></title>
+    <style>
+        /* --- 1. Variables et Général --- */
+        :root {
+            --primary-color: #34495e; /* Bleu foncé/Gris pour la barre latérale */
+            --secondary-color: #f1c40f; /* Couleur d'accent (Jaune/Or) */
+            --text-color: #333;
+            --light-text-color: #555;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+            color: var(--text-color);
+            font-size: 10pt; /* Plus petit pour ressembler à un CV imprimé */
+        }
+        
+        /* --- 2. Structure en 2 Colonnes --- */
+        .cv-container {
+            display: flex; 
+            width: 100%;
+            border: 1px solid #eee; /* Bordure subtile */
+            box-sizing: border-box;
+        }
+
+        .main-content {
+            width: 70%;
+            padding: 30px 40px;
+            box-sizing: border-box;
+        }
+        
+        .sidebar {
+            width: 30%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- 3. En-tête du CV (Nom/Titre) --- */
+        .header {
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .header h1 {
+            font-size: 24pt;
+            margin: 0;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .header h2 {
+            font-size: 14pt;
+            margin: 5px 0 0 0;
+            font-weight: 500;
+            color: var(--light-text-color);
+        }
+
+        /* --- 4. Titres de Section --- */
+        h3 {
+            font-size: 12pt;
+            color: var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* --- 5. Contenu principal (Expérience, Formation) --- */
+        section {
+            margin-bottom: 20px;
+        }
+
+        .experience-item h4 {
+            font-size: 11pt;
+            margin: 0;
+            font-weight: 700;
+            color: var(--light-text-color);
+        }
+
+        .experience-item p {
+            font-size: 9pt;
+            color: var(--light-text-color);
+            margin: 2px 0 5px 0;
+        }
+        
+        /* Liste des tâches/points (simuler des listes à puces) */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 5px 0 15px 0;
+        }
+        ul li {
+            padding-left: 1.2em;
+            text-indent: -1.2em;
+            margin-bottom: 2px;
+            font-size: 10pt;
+        }
+        ul li:before {
+            content: "•"; /* Utiliser une puce simple */
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.2em;
+        }
+        
+        /* --- 6. Barre Latérale (Sidebar) --- */
+        .sidebar-section {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sidebar-section:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar h4 {
+            font-size: 12pt;
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .contact-info p, .skills-list p {
+            margin: 5px 0;
+            font-size: 9pt;
+        }
+
+    </style>
 </head>
 <body>
-  <h1><%= data.nom %></h1>
-  <p>Email : <%= data.email %></p>
+    <div class="cv-container">
+        
+        <div class="main-content">
+            
+            <div class="header">
+                <h1><%= data.nom.toUpperCase() %></h1>
+                <h2>Serveuse polyvalente - 6 ans en restauration</h2> <%# Titre à fixer ou à rendre dynamique %>
+            </div>
+            
+            <section class="a-propos">
+                <h3>À propos de moi</h3>
+                <p>
+                    <%= data.experience.substring(0, 200) %>...
+                    <%# Pour l'exemple, nous prenons un extrait de l'expérience comme profil %>
+                </p>
+            </section>
 
-  <section>
-    <h2>Compétences</h2>
-    <p><%= data.competences %></p>
-  </section>
+            <section class="experience-section">
+                <h3>EXPÉRIENCES PROFESSIONNELLES</h3>
+                <%# Ceci est une insertion de contenu brut. Si vous vouliez une structure parfaite, 
+                   vous auriez besoin de champs séparés pour chaque expérience (titre, date, description). 
+                   Pour le moment, nous affichons le champ expérience comme une liste d'éléments. %>
+                <ul>
+                    <% data.experience.split('\n').forEach(line => { %>
+                        <% if (line.trim().length > 0) { %>
+                            <li><%- line.trim() %></li>
+                        <% } %>
+                    <% }); %>
+                </ul>
+            </section>
+            
+            <section class="formation-section">
+                <h3>FORMATION</h3>
+                <p>
+                    <%# Affiche la section Formation - vous devrez peut-être ajouter un champ 'formation' au formulaire %>
+                    *Veuillez ajouter un champ 'formation' au formulaire pour afficher cette section correctement.*
+                    <br>
+                    2013 - Certificat d'Aptitudes Professionnelles - Lycée Saint-Jacques
+                </p>
+            </section>
+            
+        </div>
 
-  <section>
-    <h2>Expérience</h2>
-    <p><%= data.experience %></p>
-  </section>
+        <div class="sidebar">
+            <%# --- Contact (similaire à la colonne de droite de l'image) --- %>
+            <div class="sidebar-section contact-info">
+                <h4>CONTACT</h4>
+                <p>📞 +336 01 02 03 04</p>
+                <p>📧 **<%= data.email %>**</p>
+                <p>📍 Marseille, France</p>
+                <p>🔗 linkedin.com/votre-profil</p>
+            </div>
+
+            <%# --- Compétences --- %>
+            <div class="sidebar-section skills-list">
+                <h4>COMPÉTENCES</h4>
+                <ul>
+                    <% data.competences.split(/[,;\n]/).forEach(item => { %>
+                        <% if (item.trim().length > 0) { %>
+                            <li><%- item.trim() %></li>
+                        <% } %>
+                    <% }); %>
+                </ul>
+            </div>
+            
+            <%# --- Qualités / Stresses d'intérêt --- %>
+            <div class="sidebar-section">
+                <h4>QUALITÉS</h4>
+                <p>• Polyvalente</p>
+                <p>• Souriante</p>
+                <p>• Dynamique</p>
+            </div>
+            
+            <div class="sidebar-section" style="border-bottom: none;">
+                <h4>CENTRES D'INTÉRÊT</h4>
+                <p>Tennis, Voyages (Espagne, Italie, lecture)</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
