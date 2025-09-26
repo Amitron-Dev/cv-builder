@@ -1,21 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Générateur de CV</title>
-  <link rel="stylesheet" href="/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de CV PDF</title>
+    
+    <%# Lien vers le fichier CSS dans le dossier 'public' %>
+    <link rel="stylesheet" href="/styles.css"> 
 </head>
 <body>
-  <h1>Générateur de CV</h1>
-  <form action="/generate" method="POST">
-    <label>Nom:</label>
-    <input type="text" name="nom" required>
-    <label>Email:</label>
-    <input type="email" name="email" required>
-    <label>Compétences:</label>
-    <textarea name="competences" required></textarea>
-    <label>Expérience:</label>
-    <textarea name="experience" required></textarea>
-    <button type="submit">Générer le CV</button>
-  </form>
+    <div class="container">
+        <h1>Générer votre CV (PDF) 📄</h1>
+        <p>Remplissez les informations ci-dessous pour créer instantanément votre CV au format PDF.</p>
+        
+        <form action="/generate" method="POST">
+            
+            <div class="form-group">
+                <label for="nom">Nom Complet</label>
+                <input type="text" id="nom" name="nom" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="john.doe@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="competences">Compétences</label>
+                <textarea id="competences" name="competences" required placeholder="Liste des technologies, langues ou aptitudes (ex: JavaScript, Node.js, Gestion de projet)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Expérience</label>
+                <textarea id="experience" name="experience" required placeholder="Résumez vos expériences professionnelles clés et vos réalisations."></textarea>
+            </div>
+
+            <button type="submit">Générer le CV au format PDF</button>
+        </form>
+    </div>
 </body>
 </html>
